@@ -1,0 +1,54 @@
+services:
+  wordpress:
+    container_name: wordpress
+    build: ./wordpress
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    networks:
+      - network
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    volumes:
+      - /home/ibenaait/data/wordpress:/var/www/html
+    env_file:
+      - .env
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+    networks:
+      - network
+  mariadb:           
+    container_name: mariadb
+    build: ./mariadb
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - /home/ibenaait/data/database:/var/lib/mysql
+volumes:
+  database:
+    name: database
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/ibenaait/data/database
+  wordpress:
+    name: wordpress
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/ibenaait/data/wordpress
+  # admin:
+  #   name: admin
+  #   driver_opts:
+  #     type: none
+  #     device:  /home/ibenaait/data/admin
+  #     o: bind
+networks:
+  network:
+    # driver: bridge
+    

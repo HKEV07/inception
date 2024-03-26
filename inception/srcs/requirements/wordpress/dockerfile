@@ -1,0 +1,29 @@
+FROM debian:11
+
+
+#RUN apt-get update && \
+#    apt-get install -y php php-mysql mariadb-client wordpress && \
+#    rm -rf /var/lib/apt/lists/* &&\
+#    curl
+
+RUN apt-get update \
+    && apt-get install -y php php-mysql mariadb-client wordpress curl \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d
+ADD https://wordpress.org/latest.tar.gz /var/www/latest.tar.gz
+RUN cd /var/www && \
+    tar -xvf latest.tar.gz && \
+    rm -rf latest.tar.gz
+
+RUN curl -o ./usr/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    chmod +x ./usr/bin/wp
+
+RUN mkdir -p ./home/ibenaait/data/wordpress
+
+COPY ./tools/wordpress.sh /tmp
+RUN chmod +x ./tmp/wordpress.sh
+
+EXPOSE 9000
+
+CMD [ "bash","./tmp/wordpress.sh" ]
