@@ -4,8 +4,8 @@ service mariadb start
 
 
 mariadb -u root -e "CREATE DATABASE $DB_NAME; \
-                  CREATE USER '$DB_USER'@'%' IDENTIFIED BY '$DB_PASSWORD'; \
-                  GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%'; \
+                  CREATE USER '$DB_USER'localhost' IDENTIFIED BY '$DB_PASSWORD'; \
+                  GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost'; \
                   FLUSH PRIVILEGES;"
 
 mariadb-admin -u root -p$DB_ROOT_PASSWORD shutdown
