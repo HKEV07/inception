@@ -14,11 +14,12 @@ RUN mkdir -p /etc/nginx/ssl && \
     -out /etc/nginx/ssl/nginx_cert.cert \
     -subj "/C=US/ST=State/L=City/O=Organization/CN=ibenaait.42.fr"
 
-COPY conf/nginx.conf /etc/nginx/conf.d
 # COPY index.html /var/www/wordpress/index.html
+RUN mkdir -p var/run/nginx
+COPY conf/nginx.conf /etc/nginx/conf.d
 
-RUN mkdir -p /run/nginx
-
+# RUN chown -R www-data:www-data /var/www/wordpress
+# RUN chown -R www-data:www-data /var/www/html
 EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]
