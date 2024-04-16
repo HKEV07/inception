@@ -1,9 +1,5 @@
 FROM debian:11
 
-#RUN		apt-get update &&\
-#        apt-get install -y nginx &&\
-#        openssl
-
 RUN apt-get update \
     && apt-get install -y nginx openssl \
     && rm -rf /var/lib/apt/lists/*
@@ -14,12 +10,9 @@ RUN mkdir -p /etc/nginx/ssl && \
     -out /etc/nginx/ssl/nginx_cert.cert \
     -subj "/C=US/ST=State/L=City/O=Organization/CN=ibenaait.42.fr"
 
-# COPY index.html /var/www/wordpress/index.html
 RUN mkdir -p var/run/nginx
 COPY conf/nginx.conf /etc/nginx/conf.d
 
-# RUN chown -R www-data:www-data /var/www/wordpress
-# RUN chown -R www-data:www-data /var/www/html
 EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]

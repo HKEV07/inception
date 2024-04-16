@@ -2,11 +2,7 @@
 
 sleep 10
 
-# Change directory to WordPress installation directory
-
 cd /var/www/wordpress
-
-# Generate WordPress configuration
 
 wp core download --allow-root
 wp config create --dbhost=$DB_HOST \

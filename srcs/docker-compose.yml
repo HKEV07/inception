@@ -1,7 +1,8 @@
-
+version: "3.9"
 services:
   mariadb:           
     container_name: mariadb
+    image : mariadb:inception
     build: ./requirements/mariadb
     env_file:
       - .env
@@ -12,6 +13,7 @@ services:
       - inception
   wordpress:
     container_name: wordpress
+    image: wordpress:inception
     build: ./requirements/wordpress
     volumes:
       - wordpress:/var/www/wordpress
@@ -23,6 +25,7 @@ services:
       - inception
   nginx:
     container_name: nginx
+    image : nginx:inception
     build: ./requirements/nginx/.
     volumes:
       - wordpress:/var/www/wordpress
