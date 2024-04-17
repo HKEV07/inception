@@ -4,7 +4,7 @@ RUN apt-get update \
     && apt-get install mariadb-server -y \
     && rm -rf /var/lib/apt/lists/*
 
-COPY ./conf/mariadb.conf /etc/mysql/mariadb.conf.d
+# COPY ./conf/mariadb.conf /etc/mysql/mariadb.conf.d
 
 EXPOSE 3306
 

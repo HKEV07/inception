@@ -14,3 +14,4 @@ down:
 		@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) down
 clean:
 		@docker system prune -af
+		@docker volume rm database wordpress

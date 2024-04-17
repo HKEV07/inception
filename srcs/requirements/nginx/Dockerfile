@@ -13,6 +13,6 @@ RUN mkdir -p /etc/nginx/ssl && \
 RUN mkdir -p var/run/nginx
 COPY conf/nginx.conf /etc/nginx/conf.d
 
-EXPOSE 443
+# EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]
