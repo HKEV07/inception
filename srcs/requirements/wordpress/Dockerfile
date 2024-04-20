@@ -2,6 +2,7 @@ FROM debian:11
 
 
 RUN apt-get update && apt-get install -y
+
 RUN apt-get install -y php7.4-fpm \
     php7.4-mysql \
 	mariadb-client \
@@ -15,7 +16,9 @@ RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 RUN chmod +x ./usr/bin/wp
 
 RUN mkdir /run/php
+
 COPY ./tools/wordpress.sh /tmp/wordpress.sh
+
 RUN chmod +x /tmp/wordpress.sh
 
 EXPOSE 9000
