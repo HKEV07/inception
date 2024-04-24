@@ -9,7 +9,6 @@ RUN apt-get install -y php7.4-fpm \
 	curl && \
 	rm -rf /var/lib/apt/lists/*
 
-#COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d
 
 RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar --output /usr/bin/wp --silent
 
