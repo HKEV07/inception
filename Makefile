@@ -1,6 +1,6 @@
 
 DOCKER_COMPOSE_FILE := ./srcs/docker-compose.yml
-DOCKER_COMPOSE := docker-compose
+DOCKER_COMPOSE := docker compose
 
 all : up
 
